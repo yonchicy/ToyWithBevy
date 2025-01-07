@@ -1,6 +1,8 @@
 use bevy::{color::palettes::css, prelude::*};
 
-use crate::{camera::GameCamera, constants, maths::get_angle_for_arc_length};
+use crate::{
+    camera::GameCamera, constants, maths::get_angle_for_arc_length, player_stat::PlayerStats,
+};
 pub struct PlayerPlugin;
 
 impl Plugin for PlayerPlugin {
@@ -88,6 +90,7 @@ fn setup_new_players(
             (
                 Mesh3d(player_resources.get_or_create_mesh(&mut meshes)),
                 MeshMaterial3d(player_resources.get_or_create_material(&mut materials)),
+                *transform,
             ), //(MaterialMeshBundle {
                //mesh: player_resources.get_or_create_mesh(&mut meshes),
                //material: player_resources.get_or_create_material(&mut materials),
@@ -108,8 +111,9 @@ fn handle_input(
     for (mut transform, mut player) in query.iter_mut() {
         let camera_transform = camera_query.single();
 
-        let angle = get_angle_for_arc_length(stats.move_speed, constants::PLANET_RADIUS)
-            * time.delta_seconds();
+        let angle =
+            get_angle_for_arc_length(constants::PLAYER_DEFAULT_SPEED, constants::PLANET_RADIUS)
+                * time.delta_secs();
 
         // Y movement
         let y = if keys.pressed(KeyCode::ArrowUp) {
