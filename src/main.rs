@@ -2,8 +2,10 @@ use bevy::prelude::*;
 
 mod camera;
 mod constants;
+mod maths;
 mod menu;
 mod planet;
+mod player;
 
 use camera::CameraPlugin;
 use planet::PlanetPlugin;
