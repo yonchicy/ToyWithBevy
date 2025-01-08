@@ -51,3 +51,6 @@ pub const POINT_RADIUS: f32 = 0.25;
 
 /// Speed of objects towards an attractor
 pub const ATTRACTOR_SPEED: f32 = 20.;
+
+/// ring
+pub const RING_HALF_DEPTH: f32 = 0.2;

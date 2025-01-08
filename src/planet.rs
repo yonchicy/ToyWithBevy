@@ -1,5 +1,5 @@
 use crate::constants;
-use bevy::{color::palettes::css, pbr::CascadeShadowConfigBuilder, prelude::*};
+use bevy::{color::palettes::css, prelude::*};
 use std::f32::consts::PI;
 pub struct PlanetPlugin;
 impl Plugin for PlanetPlugin {
@@ -37,7 +37,12 @@ impl PlanetResources {
         if let Some(ref mesh) = self.mesh {
             mesh.clone()
         } else {
-            let mesh = meshes.add(Sphere::new(constants::PLANET_RADIUS).mesh().ico(5).unwrap());
+            let mesh = meshes.add(
+                Sphere::new(constants::PLANET_RADIUS)
+                    .mesh()
+                    .ico(10)
+                    .unwrap(),
+            );
             self.mesh = Some(mesh.clone());
             mesh
         }
