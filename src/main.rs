@@ -9,12 +9,14 @@ mod planet;
 mod player;
 mod player_stat;
 mod ring;
+mod road;
 
 use camera::CameraPlugin;
 use foilage::FoilagePlugin;
 use planet::PlanetPlugin;
 use player::PlayerPlugin;
 use ring::RingPlugin;
+use road::RoadPlugin;
 
 fn main() {
     App::new()
@@ -25,6 +27,7 @@ fn main() {
             PlayerPlugin,
             CameraPlugin,
             FoilagePlugin,
+            RoadPlugin,
         ))
         .run();
 }
